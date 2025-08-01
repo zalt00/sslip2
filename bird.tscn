@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://damtoyykw2oh0"]
+
+[ext_resource type="Script" uid="uid://cnau43m612gsj" path="res://bird.gd" id="1_g5k2s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lqt33"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crnqq"]
+radius = 13.0
+height = 52.0
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_g5k2s")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-2.38419e-07, 3.09944e-06)
+scale = Vector2(26, 26)
+mesh = SubResource("CapsuleMesh_lqt33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_crnqq")
