@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkkis4pw5evx"]
+
+[ext_resource type="PackedScene" uid="uid://dxugdn6iqur7f" path="res://link.tscn" id="1_e0b2u"]
+[ext_resource type="PackedScene" uid="uid://brhcr5gqavbjw" path="res://player.tscn" id="1_xys6k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xys6k"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_e0b2u"]
+
+[node name="PlayerTest" type="Node2D"]
+
+[node name="Chain" type="Node2D" parent="."]
+position = Vector2(553, 117)
+
+[node name="Link" parent="Chain" instance=ExtResource("1_e0b2u")]
+position = Vector2(10, 0)
+
+[node name="Link2" parent="Chain" instance=ExtResource("1_e0b2u")]
+position = Vector2(30, 0)
+
+[node name="Link3" parent="Chain" instance=ExtResource("1_e0b2u")]
+position = Vector2(50, 0)
+
+[node name="Link4" parent="Chain" instance=ExtResource("1_e0b2u")]
+position = Vector2(70, 0)
+
+[node name="Link5" parent="Chain" instance=ExtResource("1_e0b2u")]
+position = Vector2(90, 0)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain"]
+node_a = NodePath("../../Anchor")
+node_b = NodePath("../Link")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Chain"]
+position = Vector2(20, 0)
+node_a = NodePath("../Link")
+node_b = NodePath("../Link2")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Chain"]
+position = Vector2(40, 0)
+node_a = NodePath("../Link2")
+node_b = NodePath("../Link3")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Chain"]
+position = Vector2(60, 0)
+node_a = NodePath("../Link3")
+node_b = NodePath("../Link4")
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Chain"]
+position = Vector2(80, 0)
+node_a = NodePath("../Link4")
+node_b = NodePath("../Link5")
+
+[node name="Player" parent="." instance=ExtResource("1_xys6k")]
+position = Vector2(257, 72)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(567, 313)
+
+[node name="Anchor" type="StaticBody2D" parent="."]
+position = Vector2(49, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor"]
+shape = SubResource("CircleShape2D_xys6k")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Anchor"]
+position = Vector2(-2.84217e-14, 4.54747e-13)
+scale = Vector2(20.0227, 20)
+mesh = SubResource("SphereMesh_e0b2u")

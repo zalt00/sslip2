@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxugdn6iqur7f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2g6u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hqdcc"]
+
+[node name="Link" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i2g6u")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(-5.72205e-06, 0)
+scale = Vector2(20.0227, 20)
+mesh = SubResource("SphereMesh_hqdcc")
