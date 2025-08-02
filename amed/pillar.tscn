@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://mh8f7klpe5lf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iqjlr"]
+
+[node name="Pillar" type="RigidBody2D"]
+mass = 0.001
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iqjlr")
