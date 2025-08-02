@@ -18,6 +18,7 @@ var num_chicks = 30
 var chick_interval = 5
 var chicks: Array = []
 var time_since_last_loop = 0
+var dead = false
 
 func _ready() -> void:
 	num_positions = (num_chicks + 1) * chick_interval
@@ -31,37 +32,41 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	previous_positions.pop_back()
 	previous_positions.push_front(position)
-	for i in range(num_chicks):
-		chicks[i].virtual_position = previous_positions[chick_interval * (i + 1)]
-		chicks[i].virtual_position.y += 15. * ((1 + i) ** .1) * sin(.005 * Time.get_ticks_msec() + .5 * i)
-		var h = i * 49824.4975
-		h = h - int(h)
-		h *= TAU
-		chicks[i].virtual_position.y += 5. * sin(.02 * Time.get_ticks_msec() + h)
+	if !dead:
+		for i in range(num_chicks):
+			chicks[i].virtual_position = previous_positions[chick_interval * (i + 1)]
+			chicks[i].virtual_position.y += 15. * ((1 + i) ** .1) * sin(.005 * Time.get_ticks_msec() + .5 * i)
+			var h = i * 49824.4975
+			h = h - int(h)
+			h *= TAU
+			chicks[i].virtual_position.y += 5. * sin(.02 * Time.get_ticks_msec() + h)
 	$Area2D/CollisionShape2D.shape.points = []
 	time_since_last_loop += delta
 	var loop_found = false
-	for i in range(num_chicks):
-		for j in range(i + 5, num_chicks):
-			if (chicks[j].node.position - chicks[i].node.position).length() < 40.:
-				loop_found = true
-				if time_since_last_loop >= 1.:
-					time_since_last_loop = 0.
-					if (j - i + 1) % 2 == 1:
-						--j
-					for k in range(i, (i + j) / 2):
-						var tmp = chicks[k].node.position
-						chicks[k].interpolation_factor = 1.
-						chicks[k + (j - i + 1) / 2].interpolation_factor = 1.
-						chicks[k].node.position = chicks[k + (j - i + 1) / 2].node.position
-						chicks[k + (j - i + 1) / 2].node.position = tmp
-				var polygon: PackedVector2Array = []
-				for k in range(i, j + 1):
-					polygon.append(to_local(chicks[k].virtual_position))
-				$Area2D/CollisionShape2D.shape.points = polygon
+	
+	if !dead:
+		# LOOP DETECTION + KILL ANIMATION
+		for i in range(num_chicks):
+			for j in range(i + 5, num_chicks):
+				if (chicks[j].node.position - chicks[i].node.position).length() < 40.:
+					loop_found = true
+					if time_since_last_loop >= 1.5:
+						time_since_last_loop = 0.
+						if (j - i + 1) % 2 == 1:
+							--j
+						for k in range(i, (i + j) / 2):
+							var tmp = chicks[k].node.position
+							chicks[k].interpolation_factor = 1.
+							chicks[k + (j - i + 1) / 2].interpolation_factor = 1.
+							chicks[k].node.position = chicks[k + (j - i + 1) / 2].node.position
+							chicks[k + (j - i + 1) / 2].node.position = tmp
+					var polygon: PackedVector2Array = []
+					for k in range(i, j + 1):
+						polygon.append(to_local(chicks[k].virtual_position))
+					$Area2D/CollisionShape2D.shape.points = polygon
+					break
+			if loop_found:
 				break
-		if loop_found:
-			break
 	for i in range(num_chicks):
 		chicks[i].interpolation_factor = lerp(chicks[i].interpolation_factor, 10., 1. * delta)
 		chicks[i].node.position = lerp(chicks[i].node.position, chicks[i].virtual_position, chicks[i].interpolation_factor * delta)
@@ -73,6 +78,8 @@ func move_towards_angle(current: float, target: float, delta: float) -> float:
 	return current + sign(diff) * delta
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	velocity.y += 600. * delta #* (1 + cos(velocity.angle()) ** 2) / 2
 	var l = velocity.length()
 	var a = velocity.angle()
@@ -82,23 +89,27 @@ func _physics_process(delta: float) -> void:
 	var target_angle = Vector2(target_x, target_y).angle()
 	if (Vector2(target_x, target_y).length() > .3):
 		a = move_towards_angle(a, target_angle, 4. * delta)
-	"""
-	var a_delta = 0
-	if (Input.get_action_strength("move_right") > .3):
-		a += 4. * delta
-	if (Input.get_action_strength("move_left") > .3):
-		a -= 4. * delta
-	a += a_delta
-	"""
 	velocity.x = l * cos(a)
 	velocity.y = l * sin(a)
+	if position.y > 900.:
+		if velocity.length() > 100.:
+			if velocity.y > 0:
+				velocity.y *= -.7
+				velocity.x *= .7
+		else:
+			dead = true
+			for c in chicks:
+				c.virtual_position.x = randf_range(-1., 1.)
+				c.virtual_position.y = randf_range(-1., 0.)
+				c.virtual_position = position + 2000. * c.virtual_position.normalized()
+				c.interpolation_factor = 0.
 	rotation = a + PI / 2
 	move_and_slide()
 	
 	for body in $Area2D.get_overlapping_bodies():
 		if is_instance_of(body, Mechant):
 			body.queue_free()
-			velocity += velocity.normalized() * 50.0
+			velocity += velocity.normalized() * 50.
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body)
