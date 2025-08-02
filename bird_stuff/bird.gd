@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+signal enemy_killed
+
+@export var enemy_spawner: Node2D
+
 @onready var chick_scene = preload("res://bird_stuff/chick.tscn")
 #@onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 
@@ -115,8 +119,9 @@ func _physics_process(delta: float) -> void:
 	
 	for body in $Area2D.get_overlapping_bodies():
 		if is_instance_of(body, Mechant):
+			enemy_killed.emit(body)
 			body.queue_free()
-			velocity += velocity.normalized() * 50.
+			velocity += velocity.normalized() * 25.
 			
 			if !$flap_small.is_playing():
 				$flap_small.pitch_scale = randf_range(0.9, 1.1)

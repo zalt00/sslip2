@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="PackedScene" uid="uid://habmaxiu65e1" path="res://bird_stuff/parallax_background.tscn" id="2_ne2dn"]
-[ext_resource type="PackedScene" uid="uid://dnv75xiahetys" path="res://bird_stuff/mechant.tscn" id="9_hul3y"]
+[ext_resource type="PackedScene" uid="uid://bqpd7u37258pa" path="res://bird_stuff/enemy_spawner.tscn" id="4_1mmr7"]
 
 [node name="BirdScene" type="Node2D"]
 
@@ -10,37 +10,15 @@
 position = Vector2(339, 107)
 limit_bottom = 1000
 
-[node name="Bird" parent="." instance=ExtResource("1_f3jpm")]
+[node name="Bird" parent="." node_paths=PackedStringArray("enemy_spawner") instance=ExtResource("1_f3jpm")]
 position = Vector2(339, 107)
+enemy_spawner = NodePath("../EnemySpawner")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Bird"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_ne2dn")]
 
-[node name="Node2D2" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(866, 101)
+[node name="EnemySpawner" parent="." instance=ExtResource("4_1mmr7")]
 
-[node name="Node2D3" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(821, 322)
-
-[node name="Node2D4" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(1561, 235)
-
-[node name="Node2D5" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(802, 536)
-
-[node name="Node2D6" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(404, 385)
-
-[node name="Node2D7" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(1046, 554)
-
-[node name="Node2D8" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(1275, 169)
-
-[node name="Node2D9" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(1392, 398)
-
-[node name="Node2D" parent="." instance=ExtResource("9_hul3y")]
-position = Vector2(607, 164)
+[connection signal="enemy_killed" from="Bird" to="EnemySpawner" method="_on_bird_enemy_killed"]
