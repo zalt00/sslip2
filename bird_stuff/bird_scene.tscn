@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="PackedScene" uid="uid://habmaxiu65e1" path="res://bird_stuff/parallax_background.tscn" id="2_ne2dn"]
-[ext_resource type="PackedScene" path="res://bird_stuff/mechant.tscn" id="9_hul3y"]
+[ext_resource type="PackedScene" uid="uid://dnv75xiahetys" path="res://bird_stuff/mechant.tscn" id="9_hul3y"]
 
 [node name="BirdScene" type="Node2D"]
 
