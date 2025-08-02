@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfsj0p3brbhkh"]
+
+[ext_resource type="Script" uid="uid://vrci12508l74" path="res://test_amedee.gd" id="1_55owg"]
+[ext_resource type="PackedScene" uid="uid://fge752nf4073" path="res://chain_amedee_2.tscn" id="2_55owg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w6ecs"]
+radius = 16.0
+height = 144.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_55owg")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(292, 153)
+rotation = 0.523598
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(289, 358)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+rotation = -0.261799
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D14"]
+position = Vector2(388.088, 390.759)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(-30, 181)
+rotation = -0.785397
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
+position = Vector2(148, 1)
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D10"]
+position = Vector2(2, 30)
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
+position = Vector2(377, 43)
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D11"]
+position = Vector2(531, 112)
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D12"]
+position = Vector2(763, 112)
+rotation = 2.35619
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="."]
+position = Vector2(80, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D13"]
+position = Vector2(683, -43)
+rotation = 4.71238
+shape = SubResource("CapsuleShape2D_w6ecs")
+debug_color = Color(3.56168e-06, 0.579683, 0.676581, 0.42)
+
+[node name="chain" parent="." instance=ExtResource("2_55owg")]
+nombre_de_maillons = 30

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch235ymc1e12c"]
+
+[ext_resource type="Script" uid="uid://dm4qbkrlyaqhy" path="res://maillon_amed.gd" id="1_npw77"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_npw77"]
+friction = 0.3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8ai6"]
+radius = 2.0
+
+[node name="maillon_amed" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_npw77")
+script = ExtResource("1_npw77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_i8ai6")

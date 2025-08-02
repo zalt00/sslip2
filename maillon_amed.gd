@@ -1,0 +1,1 @@
+class_name MaillonAmed extends RigidBody2D
