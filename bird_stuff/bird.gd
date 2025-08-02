@@ -7,7 +7,7 @@ func move_towards_angle(current: float, target: float, delta: float) -> float:
 	return current + sign(diff) * delta
 
 func _physics_process(delta: float) -> void:
-	velocity.y += 400. * delta * (1 + sin(velocity.angle()) ** 2) / 2
+	velocity.y += 800. * delta * (3 + sin(velocity.angle()) ** 2) / 4
 	var l = velocity.length()
 	var a = velocity.angle()
 	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	var target_angle = Vector2(target_x, target_y).angle()
 	print(target_angle)
 	if (Vector2(target_x, target_y).length() > .3):
-		a = move_towards_angle(a, target_angle, 5. * delta)
+		a = move_towards_angle(a, target_angle, 3. * delta)
 	#if (Input.get_action_strength("move_right") > 0):
 	#	a -= 5. * delta
 	#if (Input.get_action_strength("move_left") > 0):

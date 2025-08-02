@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpao1gjpxhyeo"]
+[gd_scene load_steps=11 format=3 uid="uid://dpao1gjpxhyeo"]
 
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="Texture2D" uid="uid://r3enxdv4uupa" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_sky.png" id="2_ypa4h"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dp41geavh6lur" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_long.png" id="6_128j0"]
 [ext_resource type="Texture2D" uid="uid://c0p1ktnamfbfq" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_short.png" id="7_jvajv"]
 [ext_resource type="Texture2D" uid="uid://bnts4pbnyeciw" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_moon.png" id="8_fh578"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xcnux"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hul3y"]
+b = Vector2(0, 24)
 
 [node name="BirdScene" type="Node2D"]
 
@@ -86,3 +91,58 @@ texture = ExtResource("8_fh578")
 centered = false
 
 [node name="Chain" type="Node2D" parent="."]
+
+[node name="BirdLink" type="RigidBody2D" parent="Chain"]
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink2" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 24)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink2"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink3" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 48)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink3"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink4" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 72)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink4"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink5" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 96)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink5"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink6" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 120)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink6"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink7" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 144)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink7"]
+shape = SubResource("SegmentShape2D_hul3y")
+
+[node name="BirdLink8" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 168)
+physics_material_override = SubResource("PhysicsMaterial_xcnux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/BirdLink8"]
+shape = SubResource("SegmentShape2D_hul3y")
