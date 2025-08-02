@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dp41geavh6lur" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_long.png" id="6_128j0"]
 [ext_resource type="Texture2D" uid="uid://c0p1ktnamfbfq" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_short.png" id="7_jvajv"]
 [ext_resource type="Texture2D" uid="uid://bnts4pbnyeciw" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_moon.png" id="8_fh578"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_xcnux"]
+[ext_resource type="PackedScene" uid="uid://dnv75xiahetys" path="res://bird_stuff/mechant.tscn" id="9_hul3y"]
 
 [node name="BirdScene" type="Node2D"]
 
@@ -85,47 +84,29 @@ motion_mirroring = Vector2(3800, 0)
 texture = ExtResource("8_fh578")
 centered = false
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(432.719, 322.75)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D2" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(866, 101)
 
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
-position = Vector2(1119, 274)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D3" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(821, 322)
 
-[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
-position = Vector2(1822, 402)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D4" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(1561, 235)
 
-[node name="MeshInstance2D4" type="MeshInstance2D" parent="."]
-position = Vector2(3112, 402)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D5" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(802, 536)
 
-[node name="MeshInstance2D5" type="MeshInstance2D" parent="."]
-position = Vector2(2164, 402)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D6" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(404, 385)
 
-[node name="MeshInstance2D6" type="MeshInstance2D" parent="."]
-position = Vector2(880, 592)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D7" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(1046, 554)
 
-[node name="MeshInstance2D7" type="MeshInstance2D" parent="."]
-position = Vector2(1553, 164)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D8" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(1275, 169)
 
-[node name="MeshInstance2D8" type="MeshInstance2D" parent="."]
-position = Vector2(2568, 580)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D9" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(1392, 398)
 
-[node name="MeshInstance2D9" type="MeshInstance2D" parent="."]
-position = Vector2(1443, 525)
-scale = Vector2(56.5, 56.5)
-mesh = SubResource("SphereMesh_xcnux")
+[node name="Node2D" parent="." instance=ExtResource("9_hul3y")]
+position = Vector2(607, 164)

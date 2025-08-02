@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnv75xiahetys"]
+
+[ext_resource type="Script" uid="uid://klm0u41r55lq" path="res://bird_stuff/mechant.gd" id="1_ob11n"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v3f4p"]
+radius = 17.167
+radial_segments = 4
+rings = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3f4p"]
+radius = 18.0278
+
+[node name="Node2D" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ob11n")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-5.36442e-07, 0)
+scale = Vector2(1.04971, 36)
+mesh = SubResource("SphereMesh_v3f4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v3f4p")

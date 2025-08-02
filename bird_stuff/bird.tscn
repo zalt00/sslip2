@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://damtoyykw2oh0"]
+[gd_scene load_steps=10 format=3 uid="uid://damtoyykw2oh0"]
 
 [ext_resource type="Script" uid="uid://cnau43m612gsj" path="res://bird_stuff/bird.gd" id="1_g5k2s"]
 [ext_resource type="Texture2D" uid="uid://dy7u356gf2m4v" path="res://bird_stuff/bird_assets/MiniBird/MiniBird [Original]/MiniBird [Original].png" id="2_crnqq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crnqq"]
-radius = 13.0
-height = 52.0
+radius = 7.0
+height = 38.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j88tq"]
 atlas = ExtResource("2_crnqq")
@@ -43,6 +43,8 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_thbtv"]
+
 [node name="Bird" type="CharacterBody2D"]
 script = ExtResource("1_g5k2s")
 
@@ -57,5 +59,9 @@ autoplay = "default"
 frame_progress = 0.11092
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("ConvexPolygonShape2D_thbtv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

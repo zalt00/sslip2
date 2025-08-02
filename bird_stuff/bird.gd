@@ -30,14 +30,14 @@ func _process(delta: float) -> void:
 		hash = hash - int(hash)
 		hash *= TAU
 		c.position.y += 5. * sin(.02 * Time.get_ticks_msec() + hash)
-	$Area2D/CollisionPolygon2D.polygon = []
+	$Area2D/CollisionShape2D.shape.points = []
 	for i in range(num_chicks):
 		for j in range(i + 5, num_chicks):
 			if (chicks[j].position - chicks[i].position).length() < 40.:
 				var polygon: PackedVector2Array = []
 				for k in range(i, j - 1):
 					polygon.append(to_local(chicks[k].position))
-				$Area2D/CollisionPolygon2D.polygon = polygon
+				$Area2D/CollisionShape2D.shape.points = polygon
 
 func move_towards_angle(current: float, target: float, delta: float) -> float:
 	var diff = wrapf(target - current, -PI, PI)
@@ -49,20 +49,29 @@ func _physics_process(delta: float) -> void:
 	velocity.y += 600. * delta #* (1 + cos(velocity.angle()) ** 2) / 2
 	var l = velocity.length()
 	var a = velocity.angle()
-	'''
+
 	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
 	var target_y = Input.get_action_raw_strength("move_down") - Input.get_action_raw_strength("move_up")
 	var target_angle = Vector2(target_x, target_y).angle()
 	if (Vector2(target_x, target_y).length() > .3):
-		a = move_towards_angle(a, target_angle, 2. * delta)
-	'''
+		a = move_towards_angle(a, target_angle, 4. * delta)
+	"""
 	var a_delta = 0
 	if (Input.get_action_strength("move_right") > .3):
 		a += 4. * delta
 	if (Input.get_action_strength("move_left") > .3):
 		a -= 4. * delta
 	a += a_delta
+	"""
 	velocity.x = l * cos(a)
 	velocity.y = l * sin(a)
 	rotation = a + PI / 2
 	move_and_slide()
+	
+	for body in $Area2D.get_overlapping_bodies():
+		if is_instance_of(body, Mechant):
+			body.queue_free()
+			velocity += velocity.normalized() * 50.0
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body)
