@@ -49,12 +49,11 @@ func _physics_process(delta: float) -> void:
 	velocity.y += 600. * delta #* (1 + cos(velocity.angle()) ** 2) / 2
 	var l = velocity.length()
 	var a = velocity.angle()
-	'''
 	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
 	var target_y = Input.get_action_raw_strength("move_down") - Input.get_action_raw_strength("move_up")
 	var target_angle = Vector2(target_x, target_y).angle()
 	if (Vector2(target_x, target_y).length() > .3):
-		a = move_towards_angle(a, target_angle, 2. * delta)
+		a = move_towards_angle(a, target_angle, 4. * delta)
 	'''
 	var a_delta = 0
 	if (Input.get_action_strength("move_right") > .3):
@@ -62,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	if (Input.get_action_strength("move_left") > .3):
 		a -= 4. * delta
 	a += a_delta
+	'''
 	velocity.x = l * cos(a)
 	velocity.y = l * sin(a)
 	rotation = a + PI / 2

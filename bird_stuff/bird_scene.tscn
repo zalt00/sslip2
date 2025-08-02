@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpao1gjpxhyeo"]
+[gd_scene load_steps=11 format=3 uid="uid://dpao1gjpxhyeo"]
 
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="Texture2D" uid="uid://r3enxdv4uupa" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_sky.png" id="2_ypa4h"]
@@ -8,16 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://dp41geavh6lur" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_long.png" id="6_128j0"]
 [ext_resource type="Texture2D" uid="uid://c0p1ktnamfbfq" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_short.png" id="7_jvajv"]
 [ext_resource type="Texture2D" uid="uid://bnts4pbnyeciw" path="res://bird_stuff/parallax_backgrounds/parallax/forest/forest_moon.png" id="8_fh578"]
+[ext_resource type="Texture2D" uid="uid://ic0cbvhsehnf" path="res://bird_stuff/background_assets/PNG/summer8/4.png" id="9_hul3y"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_xcnux"]
 
 [node name="BirdScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(339, 107)
+position = Vector2(367, -226)
+limit_bottom = 710
 
 [node name="Bird" parent="." instance=ExtResource("1_f3jpm")]
-position = Vector2(339, 107)
+position = Vector2(367, -226)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Bird"]
 remote_path = NodePath("../../Camera2D")
@@ -83,6 +85,16 @@ motion_mirroring = Vector2(3800, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
 texture = ExtResource("8_fh578")
+centered = false
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -843.333)
+motion_scale = Vector2(3, 3)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+scale = Vector2(10, 10)
+texture = ExtResource("9_hul3y")
 centered = false
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
