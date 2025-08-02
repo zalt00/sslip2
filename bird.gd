@@ -7,7 +7,7 @@ func move_towards_angle(current: float, target: float, delta: float) -> float:
 	return current + sign(diff) * delta
 
 func _physics_process(delta: float) -> void:
-	velocity.y += 750. * delta * (1 + sin(velocity.angle()) ** 2) / 2
+	velocity.y += 600. * delta * (1 + sin(velocity.angle()) ** 2) / 2
 	var l = velocity.length()
 	var a = velocity.angle()
 	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
