@@ -8,14 +8,19 @@ signal enemy_killed
 #@onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 
 class Chick:
-	var node: Node2D
+	var node: ChickNode
 	var virtual_position: Vector2
 	var interpolation_factor: float
 	func _init(n, v, i):
 		node = n
 		virtual_position = v
 		interpolation_factor = i
-
+		
+	func set_position(v: Vector2):
+		var dpos = v - node.position
+		node.sprite.rotation = dpos.angle()
+		node.position = v
+		
 var num_positions
 var previous_positions = []
 var num_chicks = 31
@@ -68,19 +73,26 @@ func _process(delta: float) -> void:
 							var tmp = chicks[k].node.position
 							chicks[k].interpolation_factor = 1.
 							chicks[k + (j - i + 1) / 2].interpolation_factor = 1.
-							chicks[k].node.position = chicks[k + (j - i + 1) / 2].node.position
-							chicks[k + (j - i + 1) / 2].node.position = tmp
-					var polygon: PackedVector2Array = []
-					for k in range(i, j + 1):
-						polygon.append(to_local(chicks[k].virtual_position))
-					$Area2D/CollisionShape2D.shape.points = polygon
-					break
+							chicks[k].set_position(chicks[k + (j - i + 1) / 2].node.position)
+							chicks[k + (j - i + 1) / 2].set_position(tmp)
+						var polygon: PackedVector2Array = []
+						for k in range(i, j + 1):
+							polygon.append(to_local(chicks[k].virtual_position))
+						$Area2D/CollisionShape2D.shape.points = polygon
+						break
 			if loop_found:
 				break
+				
 	for i in range(num_chicks):
 		chicks[i].interpolation_factor = lerp(chicks[i].interpolation_factor, 10., 1. * delta)
-		chicks[i].node.position = lerp(chicks[i].node.position, chicks[i].virtual_position, chicks[i].interpolation_factor * delta)
-
+		chicks[i].set_position(lerp(chicks[i].node.position, chicks[i].virtual_position, chicks[i].interpolation_factor * delta))
+		var sprite = chicks[i].node.sprite
+		if -PI/2.0 <= sprite.global_rotation and sprite.global_rotation <= PI/2.0:
+			sprite.scale.y = abs(sprite.scale.y)
+		else:
+			sprite.scale.y = -abs(sprite.scale.y)
+	
+	
 func move_towards_angle(current: float, target: float, delta: float) -> float:
 	var diff = wrapf(target - current, -PI, PI)
 	if abs(diff) < delta:
@@ -126,6 +138,11 @@ func _physics_process(delta: float) -> void:
 			if !$flap_small.is_playing():
 				$flap_small.pitch_scale = randf_range(0.9, 1.1)
 				$flap_small.play()
+				
+	if 0 <= global_rotation and global_rotation <= PI:
+		$AnimatedSprite2D.scale.y = abs($AnimatedSprite2D.scale.y)
+	else:
+		$AnimatedSprite2D.scale.y = -abs($AnimatedSprite2D.scale.y)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body)

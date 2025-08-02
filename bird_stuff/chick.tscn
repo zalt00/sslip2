@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bokdrnotv2m0m"]
+[gd_scene load_steps=8 format=3 uid="uid://bokdrnotv2m0m"]
 
+[ext_resource type="Script" uid="uid://dk2pi67i3grnh" path="res://bird_stuff/chick.gd" id="1_8iuxs"]
 [ext_resource type="Texture2D" uid="uid://dy7u356gf2m4v" path="res://bird_stuff/bird_assets/MiniBird/MiniBird [Original]/MiniBird [Original].png" id="1_vhgid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8iuxs"]
@@ -39,6 +40,7 @@ animations = [{
 }]
 
 [node name="Chick" type="Node2D"]
+script = ExtResource("1_8iuxs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
