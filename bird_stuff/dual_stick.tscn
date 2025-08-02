@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c66fipduic0kc"]
+
+[ext_resource type="PackedScene" uid="uid://dg2uwqjkjado5" path="res://bird_stuff/player_dual.tscn" id="1_7s1hq"]
+
+[node name="DualStick" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Player1" parent="." instance=ExtResource("1_7s1hq")]
+position = Vector2(253, 320)
+playerNumber = 1
+
+[node name="Player2" parent="." instance=ExtResource("1_7s1hq")]
+position = Vector2(813, 438)
+playerNumber = 2

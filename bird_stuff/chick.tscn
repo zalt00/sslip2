@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bokdrnotv2m0m"]
+
+[ext_resource type="Texture2D" uid="uid://dy7u356gf2m4v" path="res://bird_stuff/bird_assets/MiniBird/MiniBird [Original]/MiniBird [Original].png" id="1_vhgid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iuxs"]
+atlas = ExtResource("1_vhgid")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khwwm"]
+atlas = ExtResource("1_vhgid")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88rlm"]
+atlas = ExtResource("1_vhgid")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7eikw"]
+atlas = ExtResource("1_vhgid")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ydrcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iuxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khwwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88rlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7eikw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Chick" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ydrcb")
+autoplay = "default"
+frame_progress = 0.0294499

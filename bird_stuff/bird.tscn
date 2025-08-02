@@ -55,3 +55,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yr30m")
 autoplay = "default"
 frame_progress = 0.11092
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
