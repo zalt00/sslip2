@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d10mi0jvbygy3"]
+[gd_scene load_steps=9 format=3 uid="uid://d10mi0jvbygy3"]
 
 [ext_resource type="PackedScene" uid="uid://fge752nf4073" path="res://amed/chain_amedee_2.tscn" id="1_em3f1"]
 [ext_resource type="Script" uid="uid://bveiaod0nnbj5" path="res://amed/test_amedee_2.gd" id="1_hq848"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://mh8f7klpe5lf" path="res://amed/pillar.tscn" id="5_xver5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0egbd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xver5"]
+friction = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xver5"]
+size = Vector2(1262, 26)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_hq848")
@@ -17,7 +23,6 @@ mass = 0.085
 
 [node name="chaine" parent="." instance=ExtResource("1_em3f1")]
 position = Vector2(116, 105)
-nombre_de_maillons = 15
 physics_material = SubResource("PhysicsMaterial_0egbd")
 gravity_maillon = 0.0
 mass_maillon = 0.001
@@ -42,4 +47,13 @@ position = Vector2(262, 281)
 
 [node name="Pillar" parent="." instance=ExtResource("5_xver5")]
 position = Vector2(600, 300)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_xver5")
+gravity_scale = 0.0
 linear_damp = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(529, 628)
+shape = SubResource("RectangleShape2D_xver5")

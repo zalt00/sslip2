@@ -1,5 +1,5 @@
 extends Node2D
-@export var max_speed = 200.0
+@export var max_speed = 400.0
 
 @onready var body: RigidBody2D = $body
 @export var player_id = 1
