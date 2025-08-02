@@ -14,13 +14,16 @@ class Chick:
 
 var num_positions
 var previous_positions = []
-var num_chicks = 30
+var num_chicks = 31
 var chick_interval = 5
 var chicks: Array = []
 var time_since_last_loop = 0
 var dead = false
 
 func _ready() -> void:
+	$flaaaap2.play(1.5)
+	$flaaaap3.play(2.5)
+
 	num_positions = (num_chicks + 1) * chick_interval
 	for i in range(num_positions):
 		previous_positions.append(position)
@@ -28,7 +31,7 @@ func _ready() -> void:
 		var chick_cur = chick_scene.instantiate()
 		chicks.append(Chick.new(chick_cur, Vector2.ZERO, 10.))
 		add_sibling.call_deferred(chick_cur)
-
+	chicks[-1].node.visible = false
 func _process(delta: float) -> void:
 	previous_positions.pop_back()
 	previous_positions.push_front(position)
@@ -50,7 +53,10 @@ func _process(delta: float) -> void:
 			for j in range(i + 5, num_chicks):
 				if (chicks[j].node.position - chicks[i].node.position).length() < 40.:
 					loop_found = true
-					if time_since_last_loop >= 1.5:
+					if time_since_last_loop >= 1.5 and (j-i + 1) > 10:
+						if !$flap_small.is_playing() and (j-i + 1) > 15:
+							$flap_small.pitch_scale = randf_range(0.9, 1.1)
+							$flap_small.play()
 						time_since_last_loop = 0.
 						if (j - i + 1) % 2 == 1:
 							--j
@@ -74,6 +80,7 @@ func _process(delta: float) -> void:
 func move_towards_angle(current: float, target: float, delta: float) -> float:
 	var diff = wrapf(target - current, -PI, PI)
 	if abs(diff) < delta:
+
 		return target
 	return current + sign(diff) * delta
 
@@ -83,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += 600. * delta #* (1 + cos(velocity.angle()) ** 2) / 2
 	var l = velocity.length()
 	var a = velocity.angle()
-
+	
 	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
 	var target_y = Input.get_action_raw_strength("move_down") - Input.get_action_raw_strength("move_up")
 	var target_angle = Vector2(target_x, target_y).angle()
@@ -110,6 +117,10 @@ func _physics_process(delta: float) -> void:
 		if is_instance_of(body, Mechant):
 			body.queue_free()
 			velocity += velocity.normalized() * 50.
+			
+			if !$flap_small.is_playing():
+				$flap_small.pitch_scale = randf_range(0.9, 1.1)
+				$flap_small.play()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body)

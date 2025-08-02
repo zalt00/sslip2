@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://damtoyykw2oh0"]
+[gd_scene load_steps=13 format=3 uid="uid://damtoyykw2oh0"]
 
 [ext_resource type="Script" uid="uid://cnau43m612gsj" path="res://bird_stuff/bird.gd" id="1_g5k2s"]
 [ext_resource type="Texture2D" uid="uid://dy7u356gf2m4v" path="res://bird_stuff/bird_assets/MiniBird/MiniBird [Original]/MiniBird [Original].png" id="2_crnqq"]
+[ext_resource type="AudioStream" uid="uid://cb3txiifwgm2b" path="res://bird_stuff/sounds/the-sound-of-a-crow-landing.mp3" id="3_b0p3x"]
+[ext_resource type="AudioStream" uid="uid://60k6jswwkdb6" path="res://bird_stuff/sounds/the-dove-is-in-the-dovecote_cut.mp3" id="4_6a24d"]
+[ext_resource type="AudioStream" uid="uid://g3w2qt0qmdj4" path="res://bird_stuff/sounds/sound-bird-flight-over-a-quiet-place.mp3" id="5_s0lk7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crnqq"]
 radius = 7.0
@@ -63,5 +66,25 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("ConvexPolygonShape2D_thbtv")
+
+[node name="flap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b0p3x")
+
+[node name="flap_small" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6a24d")
+
+[node name="flaaaap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s0lk7")
+autoplay = true
+
+[node name="flaaaap2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s0lk7")
+volume_db = -5.571
+pitch_scale = 1.36
+
+[node name="flaaaap3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s0lk7")
+volume_db = -10.214
+pitch_scale = 1.25
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
