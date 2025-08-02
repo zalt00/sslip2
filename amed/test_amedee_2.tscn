@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://d10mi0jvbygy3"]
+
+[ext_resource type="PackedScene" uid="uid://fge752nf4073" path="res://amed/chain_amedee_2.tscn" id="1_em3f1"]
+[ext_resource type="Script" uid="uid://bveiaod0nnbj5" path="res://amed/test_amedee_2.gd" id="1_hq848"]
+[ext_resource type="PackedScene" uid="uid://dekvja8ol08bk" path="res://amed/player_amed_3.tscn" id="3_hq848"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0egbd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hq848"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hq848")
+
+[node name="chaine" parent="." instance=ExtResource("1_em3f1")]
+position = Vector2(116, 105)
+nombre_de_maillons = 40
+physics_material = SubResource("PhysicsMaterial_0egbd")
+gravity_maillon = 0.0
+mass_maillon = 0.001
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(90, 106)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+mass = 0.022
+gravity_scale = 0.0
+angular_damp = 7.622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(368, 206)
+shape = SubResource("CapsuleShape2D_hq848")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+mass = 0.022
+gravity_scale = 0.0
+angular_damp = 7.622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(452, 275)
+shape = SubResource("CapsuleShape2D_hq848")
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+mass = 0.022
+gravity_scale = 0.0
+angular_damp = 7.622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+position = Vector2(182, 336)
+shape = SubResource("CapsuleShape2D_hq848")
+
+[node name="RigidBody2D4" type="RigidBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+mass = 1.139
+gravity_scale = 0.0
+angular_damp = 7.622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4"]
+position = Vector2(397, 387)
+shape = SubResource("CapsuleShape2D_hq848")
+
+[node name="pillar" type="RigidBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+mass = 100.0
+gravity_scale = 0.0
+linear_damp = 1.906
+angular_damp = 7.622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pillar"]
+shape = SubResource("CapsuleShape2D_hq848")
+
+[node name="player" parent="." instance=ExtResource("3_hq848")]
+position = Vector2(90, 106)
+max_speed = 400.0
+
+[node name="joint2" type="PinJoint2D" parent="."]

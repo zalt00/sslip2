@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fge752nf4073"]
 
-[ext_resource type="Script" uid="uid://cgpi5of5kxvt0" path="res://chain_amedee_2.gd" id="1_xl5dd"]
+[ext_resource type="Script" uid="uid://cgpi5of5kxvt0" path="res://amed/chain_amedee_2.gd" id="1_xl5dd"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xl5dd")

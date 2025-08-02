@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b23uai0fvggth"]
+
+[ext_resource type="Script" uid="uid://byclmtarij6ks" path="res://amed/player_amed.gd" id="1_cp7iy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jd1yf"]
+
+[node name="body" type="CharacterBody2D"]
+motion_mode = 1
+floor_stop_on_slope = false
+script = ExtResource("1_cp7iy")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jd1yf")

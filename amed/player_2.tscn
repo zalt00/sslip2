@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d320plmmuw4bg"]
+
+[ext_resource type="Script" uid="uid://chi4tmm8sc8hv" path="res://amed/player_2.gd" id="1_5oc80"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5oc80"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfe3p"]
+
+[node name="body" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_5oc80")
+gravity_scale = 0.0
+script = ExtResource("1_5oc80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lfe3p")
