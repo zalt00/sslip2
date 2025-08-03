@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpao1gjpxhyeo"]
 
-[ext_resource type="Script" uid="uid://bf25ysl3728mn" path="res://bird_stuff/camera.gd" id="1_1mmr7"]
+[ext_resource type="Script" path="res://bird_stuff/camera.gd" id="1_1mmr7"]
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="PackedScene" uid="uid://habmaxiu65e1" path="res://bird_stuff/parallax_background.tscn" id="2_ne2dn"]
 [ext_resource type="PackedScene" uid="uid://bqpd7u37258pa" path="res://bird_stuff/enemy_spawner.tscn" id="4_1mmr7"]
