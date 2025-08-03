@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpao1gjpxhyeo"]
 
-[ext_resource type="Script" path="res://bird_stuff/camera.gd" id="1_1mmr7"]
+[ext_resource type="Script" uid="uid://bf25ysl3728mn" path="res://bird_stuff/camera.gd" id="1_1mmr7"]
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="PackedScene" uid="uid://habmaxiu65e1" path="res://bird_stuff/parallax_background.tscn" id="2_ne2dn"]
 [ext_resource type="PackedScene" uid="uid://bqpd7u37258pa" path="res://bird_stuff/enemy_spawner.tscn" id="4_1mmr7"]
@@ -10,17 +10,12 @@
 
 [node name="BirdScene" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(339, 107)
-limit_bottom = 1000
-script = ExtResource("1_1mmr7")
-
 [node name="Bird" parent="." node_paths=PackedStringArray("enemy_spawner") instance=ExtResource("1_f3jpm")]
 position = Vector2(339, 107)
 enemy_spawner = NodePath("../EnemySpawner")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Bird"]
-remote_path = NodePath("../../Camera2D")
+remote_path = NodePath("../../CameraTarget")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_ne2dn")]
 
@@ -44,5 +39,13 @@ theme_override_font_sizes/font_size = 50
 text = "Score: "
 script = ExtResource("5_jew72")
 bird = NodePath("../../Bird")
+
+[node name="CameraTarget" type="Node2D" parent="."]
+position = Vector2(339, 107)
+
+[node name="Camera2D" type="Camera2D" parent="CameraTarget"]
+position = Vector2(339, 107)
+limit_bottom = 1000
+script = ExtResource("1_1mmr7")
 
 [connection signal="enemy_killed" from="Bird" to="EnemySpawner" method="_on_bird_enemy_killed"]
