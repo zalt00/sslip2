@@ -67,7 +67,8 @@ theme_override_font_sizes/font_size = 50
 text = "Score: "
 script = ExtResource("6_fu2i3")
 score_label = NodePath("../Score")
-[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Camera2D2" type="Camera2D" parent="."]
 position = Vector2(339, 107)
 limit_bottom = 1000
 script = ExtResource("1_1mmr7")
