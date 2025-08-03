@@ -146,7 +146,7 @@ func _physics_process(delta: float) -> void:
 				c.interpolation_factor = 0.
 	rotation = a + PI / 2
 	if velocity.length() > 750. && time_since_last_dash > 1.5:
-		velocity *= .994
+		velocity -= delta * velocity
 	move_and_slide()
 	print(velocity.length())
 	
