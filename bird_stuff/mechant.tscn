@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnv75xiahetys"]
+[gd_scene load_steps=10 format=3 uid="uid://dnv75xiahetys"]
 
 [ext_resource type="Script" uid="uid://klm0u41r55lq" path="res://bird_stuff/mechant.gd" id="1_ob11n"]
-[ext_resource type="Texture2D" uid="uid://f6dh8ebjq3te" path="res://bird_stuff/bird_assets/latest-747767069.png" id="2_bbugk"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_7eo5x"]
+[ext_resource type="Texture2D" uid="uid://3q46la8q81nr" path="res://bird_stuff/butterfly_assets/Butterfly 32x32.png" id="2_bbugk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3f4p"]
 radius = 2.0
@@ -11,17 +9,46 @@ radius = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ob11n"]
 radius = 17.72
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7eo5x"]
+atlas = ExtResource("2_bbugk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p811r"]
+atlas = ExtResource("2_bbugk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgn0r"]
+atlas = ExtResource("2_bbugk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd6lo"]
+atlas = ExtResource("2_bbugk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l1sg0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7eo5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p811r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgn0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd6lo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="StaticBody2D"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ob11n")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(2, -1.36424e-12)
-rotation = 3.14159
-scale = Vector2(-46.494, 42.634)
-mesh = SubResource("QuadMesh_7eo5x")
-texture = ExtResource("2_bbugk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v3f4p")
@@ -30,3 +57,7 @@ shape = SubResource("CircleShape2D_v3f4p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_ob11n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l1sg0")
+autoplay = "default"

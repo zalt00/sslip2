@@ -23,11 +23,13 @@ class Chick:
 		
 var num_positions
 var previous_positions = []
-var num_chicks = 31
+var num_chicks = 41
 var chick_interval = 5
 var chicks: Array = []
 var time_since_last_loop = 0
 var dead = false
+var can_dash = true
+var time_since_last_dash := 0.
 
 func _ready() -> void:
 	$flaaaap2.play(1.5)
@@ -103,15 +105,21 @@ func move_towards_angle(current: float, target: float, delta: float) -> float:
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
+	var target_y = Input.get_action_raw_strength("move_down") - Input.get_action_raw_strength("move_up")
+	time_since_last_dash += delta
+	if can_dash && Input.get_action_strength("dash") > .5:
+		time_since_last_dash = 0.
+		can_dash = false
+		velocity = 900. * Vector2(target_x, target_y).normalized()
+		
 	velocity.y += 600. * delta #* (1 + cos(velocity.angle()) ** 2) / 2
 	var l = velocity.length()
 	var a = velocity.angle()
 	
-	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
-	var target_y = Input.get_action_raw_strength("move_down") - Input.get_action_raw_strength("move_up")
 	var target_angle = Vector2(target_x, target_y).angle()
 	if (Vector2(target_x, target_y).length() > .3):
-		a = move_towards_angle(a, target_angle, 4. * delta)
+		a = move_towards_angle(a, target_angle, 3 * delta)
 	velocity.x = l * cos(a)
 	velocity.y = l * sin(a)
 	if position.y > 900.:
@@ -127,13 +135,16 @@ func _physics_process(delta: float) -> void:
 				c.virtual_position = position + 2000. * c.virtual_position.normalized()
 				c.interpolation_factor = 0.
 	rotation = a + PI / 2
+	if time_since_last_dash > 1.5:
+		velocity *= .994
 	move_and_slide()
 	
 	for body in $Area2D.get_overlapping_bodies():
 		if is_instance_of(body, Mechant):
+			can_dash = true
 			enemy_killed.emit(body)
 			body.queue_free()
-			velocity += velocity.normalized() * 25.
+			#velocity += velocity.normalized() * 25.
 			
 			if !$flap_small.is_playing():
 				$flap_small.pitch_scale = randf_range(0.9, 1.1)
