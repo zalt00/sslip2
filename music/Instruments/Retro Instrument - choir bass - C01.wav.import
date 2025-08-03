@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://v4ple7gqakds"
+path="res://.godot/imported/Retro Instrument - choir bass - C01.wav-7a9a956d9242561c7e65d6018a1a89ee.sample"
+
+[deps]
+
+source_file="res://music/Instruments/Retro Instrument - choir bass - C01.wav"
+dest_files=["res://.godot/imported/Retro Instrument - choir bass - C01.wav-7a9a956d9242561c7e65d6018a1a89ee.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

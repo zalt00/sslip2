@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7qets4nmt0t6"
+path="res://.godot/imported/Party blowers (29D9C83-MSB).mp3-0cffdca461cc7746f75ac745c62fb7e8.mp3str"
+
+[deps]
+
+source_file="res://bird_stuff/sounds/Party blowers (29D9C83-MSB).mp3"
+dest_files=["res://.godot/imported/Party blowers (29D9C83-MSB).mp3-0cffdca461cc7746f75ac745c62fb7e8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

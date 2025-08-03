@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dqu3eg2ce180q"
+path="res://.godot/imported/Retro Instrument - drumset - C07.wav-2ebf4615b78a8f6d0c37ea6931d96244.sample"
+
+[deps]
+
+source_file="res://music/Instruments/Retro Instrument - drumset - C07.wav"
+dest_files=["res://.godot/imported/Retro Instrument - drumset - C07.wav-2ebf4615b78a8f6d0c37ea6931d96244.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -19,12 +19,13 @@ func spawn_enemy() -> void:
 	enemies.push_back(enemy)
 
 func _ready() -> void:
+	seed(12345)
 	for i in range(num_enemies):
 		spawn_enemy()
 
 func _process(delta: float) -> void:
 	if (time_since_last_enemy > 2.):
-		spawn_enemy()
+		#spawn_enemy()
 		time_since_last_enemy = 0.
 	else:
 		time_since_last_enemy += delta

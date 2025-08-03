@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bbpi28u1mwk37"
+path="res://.godot/imported/Retro Instrument - crystal - C10.wav-ba7cae207dfa0ea74c0956d93be2905e.sample"
+
+[deps]
+
+source_file="res://music/Instruments/Retro Instrument - crystal - C10.wav"
+dest_files=["res://.godot/imported/Retro Instrument - crystal - C10.wav-ba7cae207dfa0ea74c0956d93be2905e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

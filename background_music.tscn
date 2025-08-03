@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpi81581ssnuy"]
+[gd_scene load_steps=4 format=3 uid="uid://bpi81581ssnuy"]
 
-[ext_resource type="AudioStream" uid="uid://c0ph1gc0ku4m0" path="res://music/sonic_colors.wav" id="1_4m5bw"]
+[ext_resource type="AudioStream" uid="uid://ccdeteu8kfe2a" path="res://music/spaceship2.wav" id="1_4m5bw"]
+[ext_resource type="Script" uid="uid://b4431ko0ecv6e" path="res://background_music.gd" id="2_kqdjy"]
+[ext_resource type="AudioStream" uid="uid://c0ph1gc0ku4m0" path="res://music/sonic_colors.wav" id="2_l3d1b"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer"]
 stream = ExtResource("1_4m5bw")
-volume_db = -14.857
+volume_db = -0.928
+script = ExtResource("2_kqdjy")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l3d1b")
+volume_db = -4.643
 autoplay = true

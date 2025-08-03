@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dql3t5u4nr6ky"
+path="res://.godot/imported/Retro Instrument - crystal - C02.wav-95487daf6eef9c0e84e5823e77db0929.sample"
+
+[deps]
+
+source_file="res://music/Instruments/Retro Instrument - crystal - C02.wav"
+dest_files=["res://.godot/imported/Retro Instrument - crystal - C02.wav-95487daf6eef9c0e84e5823e77db0929.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

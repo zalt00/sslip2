@@ -174,6 +174,10 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.scale.y = abs($AnimatedSprite2D.scale.y)
 	else:
 		$AnimatedSprite2D.scale.y = -abs($AnimatedSprite2D.scale.y)
+		
+	if Input.is_action_just_pressed("escape"):
+		get_tree().change_scene_to_file("res://main_menu.tscn")
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body)

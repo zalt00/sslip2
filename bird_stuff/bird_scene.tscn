@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpao1gjpxhyeo"]
+[gd_scene load_steps=9 format=3 uid="uid://dpao1gjpxhyeo"]
 
 [ext_resource type="Script" path="res://bird_stuff/camera.gd" id="1_1mmr7"]
 [ext_resource type="PackedScene" uid="uid://damtoyykw2oh0" path="res://bird_stuff/bird.tscn" id="1_f3jpm"]
 [ext_resource type="PackedScene" uid="uid://habmaxiu65e1" path="res://bird_stuff/parallax_background.tscn" id="2_ne2dn"]
 [ext_resource type="PackedScene" uid="uid://bqpd7u37258pa" path="res://bird_stuff/enemy_spawner.tscn" id="4_1mmr7"]
 [ext_resource type="Script" uid="uid://dhrvgu3owlgwv" path="res://bird_stuff/score.gd" id="5_jew72"]
+[ext_resource type="Script" uid="uid://dofuel3haxpsq" path="res://bird_stuff/timer.gd" id="6_fu2i3"]
+[ext_resource type="AudioStream" uid="uid://7qets4nmt0t6" path="res://bird_stuff/sounds/Party blowers (29D9C83-MSB).mp3" id="6_qn0w0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jew72"]
 
@@ -35,7 +37,14 @@ rotation = 1.57079
 scale = Vector2(55.5132, 83.3861)
 mesh = SubResource("CapsuleMesh_jew72")
 
-[node name="Score" type="Label" parent="CanvasGroup" node_paths=PackedStringArray("bird")]
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="CanvasGroup"]
+modulate = Color(0, 0, 0.227451, 1)
+position = Vector2(93.642, 91)
+rotation = 1.57079
+scale = Vector2(55.5132, 83.3861)
+mesh = SubResource("CapsuleMesh_jew72")
+
+[node name="Score" type="Label" parent="CanvasGroup" node_paths=PackedStringArray("bird", "spawner")]
 offset_left = 21.0
 offset_top = -7.0
 offset_right = 181.0
@@ -44,5 +53,19 @@ theme_override_font_sizes/font_size = 50
 text = "Score: "
 script = ExtResource("5_jew72")
 bird = NodePath("../../Bird")
+spawner = NodePath("../../EnemySpawner")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasGroup/Score"]
+stream = ExtResource("6_qn0w0")
+
+[node name="Timer" type="Label" parent="CanvasGroup" node_paths=PackedStringArray("score_label")]
+offset_left = 24.0
+offset_top = 53.0
+offset_right = 184.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 50
+text = "Score: "
+script = ExtResource("6_fu2i3")
+score_label = NodePath("../Score")
 
 [connection signal="enemy_killed" from="Bird" to="EnemySpawner" method="_on_bird_enemy_killed"]
