@@ -30,6 +30,7 @@ var time_since_last_loop = 0
 var dead = false
 var can_dash = true
 var time_since_last_dash := 0.
+var score := 0
 
 func _ready() -> void:
 	$flaaaap2.play(1.5)
@@ -46,7 +47,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	previous_positions.pop_back()
 	previous_positions.push_front(position)
-	if !dead:
+	if dead:
+		if Input.get_action_strength("restart") > .5:
+			get_tree().reload_current_scene()
+	else:
 		for i in range(num_chicks):
 			chicks[i].virtual_position = previous_positions[chick_interval * (i + 1)]
 			chicks[i].virtual_position.y += 15. * ((1 + i) ** .1) * sin(.005 * Time.get_ticks_msec() + .5 * i)
@@ -64,7 +68,7 @@ func _process(delta: float) -> void:
 			for j in range(i + 5, num_chicks):
 				if (chicks[j].node.position - chicks[i].node.position).length() < 40.:
 					loop_found = true
-					if time_since_last_loop >= 1.5 and (j-i + 1) > 10:
+					if time_since_last_loop >= 1. and (j-i + 1) > 10:
 						if !$flap_small.is_playing() and (j-i + 1) > 15:
 							$flap_small.pitch_scale = randf_range(0.9, 1.1)
 							$flap_small.play()
@@ -122,6 +126,12 @@ func _physics_process(delta: float) -> void:
 		a = move_towards_angle(a, target_angle, 3 * delta)
 	velocity.x = l * cos(a)
 	velocity.y = l * sin(a)
+	if position.x < Global.limit_left && velocity.x < 0:
+		velocity.x *= -1.
+	if position.x > Global.limit_right && velocity.x > 0:
+		velocity.x *= -1.
+	if position.y < Global.limit_up && velocity.y < 0.:
+		velocity.y *= -1.
 	if position.y > 900.:
 		if velocity.length() > 100.:
 			if velocity.y > 0:
@@ -141,6 +151,7 @@ func _physics_process(delta: float) -> void:
 	
 	for body in $Area2D.get_overlapping_bodies():
 		if is_instance_of(body, Mechant):
+			++score
 			can_dash = true
 			enemy_killed.emit(body)
 			body.queue_free()
