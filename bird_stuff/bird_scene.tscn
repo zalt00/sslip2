@@ -40,7 +40,6 @@ offset_left = 21.0
 offset_top = -7.0
 offset_right = 181.0
 offset_bottom = 62.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Score: "
 script = ExtResource("5_jew72")

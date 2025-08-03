@@ -145,13 +145,14 @@ func _physics_process(delta: float) -> void:
 				c.virtual_position = position + 2000. * c.virtual_position.normalized()
 				c.interpolation_factor = 0.
 	rotation = a + PI / 2
-	if time_since_last_dash > 1.5:
+	if velocity.length() > 750. && time_since_last_dash > 1.5:
 		velocity *= .994
 	move_and_slide()
+	print(velocity.length())
 	
 	for body in $Area2D.get_overlapping_bodies():
 		if is_instance_of(body, Mechant):
-			++score
+			score += 1
 			can_dash = true
 			enemy_killed.emit(body)
 			body.queue_free()
