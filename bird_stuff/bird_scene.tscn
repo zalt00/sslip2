@@ -15,7 +15,7 @@ position = Vector2(339, 107)
 enemy_spawner = NodePath("../EnemySpawner")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Bird"]
-remote_path = NodePath("../../CameraTarget")
+remote_path = NodePath("../../Camera2D")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_ne2dn")]
 
@@ -40,10 +40,7 @@ text = "Score: "
 script = ExtResource("5_jew72")
 bird = NodePath("../../Bird")
 
-[node name="CameraTarget" type="Node2D" parent="."]
-position = Vector2(339, 107)
-
-[node name="Camera2D" type="Camera2D" parent="CameraTarget"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(339, 107)
 limit_bottom = 1000
 script = ExtResource("1_1mmr7")
