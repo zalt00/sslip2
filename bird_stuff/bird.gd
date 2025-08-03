@@ -111,6 +111,14 @@ func _physics_process(delta: float) -> void:
 		return
 	var target_x = Input.get_action_raw_strength("move_right") - Input.get_action_raw_strength("move_left")
 	var target_y = Input.get_action_raw_strength("move_down") - Input.get_action_raw_strength("move_up")
+	
+	if Input.is_action_pressed("move"):
+		var mpos = get_global_mouse_position()
+		var dpos = mpos - global_position
+		var vec = dpos.normalized()
+		target_x = vec[0]
+		target_y = vec[1]
+	
 	time_since_last_dash += delta
 	if can_dash && Input.get_action_strength("dash") > .5:
 		time_since_last_dash = 0.
