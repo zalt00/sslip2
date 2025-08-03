@@ -31,4 +31,6 @@ func _process(delta: float) -> void:
 		time_since_last_enemy += delta
 
 func _on_bird_enemy_killed(enemy) -> void:
+	$DeathSound.pitch_scale = randf_range(0.9, 1.1)
+	$DeathSound.play()
 	enemies.erase(enemy)

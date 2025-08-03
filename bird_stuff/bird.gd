@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal enemy_killed
 
 @export var enemy_spawner: Node2D
+@export var camera_position: Node2D
 
 @onready var chick_scene = preload("res://bird_stuff/chick.tscn")
 #@onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
@@ -121,6 +122,7 @@ func _physics_process(delta: float) -> void:
 	
 	time_since_last_dash += delta
 	if can_dash && Input.get_action_strength("dash") > .5:
+		camera_position.shake = 10.
 		time_since_last_dash = 0.
 		can_dash = false
 		velocity = 900. * Vector2(target_x, target_y).normalized()

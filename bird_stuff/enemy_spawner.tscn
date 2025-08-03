@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqpd7u37258pa"]
+[gd_scene load_steps=3 format=3 uid="uid://bqpd7u37258pa"]
 
 [ext_resource type="Script" uid="uid://bmtkcr6tw1gi2" path="res://bird_stuff/enemy_spawner.gd" id="1_s6exe"]
+[ext_resource type="AudioStream" uid="uid://cik5t5lc2jkr8" path="res://bird_stuff/sounds/Random7.wav" id="2_t4uh4"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_s6exe")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_t4uh4")
+volume_db = -7.839
